@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>kanban</h1>
+      <nav>
+        <ul>
+          <!-- go to the tasks board -->
+          <li> <a href="{% url 'tasks:home'%}">back to board</a> </li>
+          <!-- logout button -->
+          {% if user.is_authenticated %}
+          <li> <form class="logoutLink" action="{%url 'users:logout'%}" method="post">
+              {%csrf_token%}
+              <button type="submit" name="logout">logout</button>
+            </form>
+          </li>
+          {%else%}
+          <li> <form class="register" action="{%url 'users:register'%}" method="post">
+              {%csrf_token%}
+              <button type="submit" name="logout">register</button>
+              </form>
+          </li>
+
+          {%endif%}
+
+
+</button>
+</li>
+        </ul>
+      </nav>
+      {%block content%}
+      {%endblock%}
+  </body>
+</html>

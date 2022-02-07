@@ -1,0 +1,44 @@
+{%extends 'base.html'%}
+{%block content%}
+    <table border="1">
+      <tr>
+        <th>pending </th>
+        <th>ongoing</th>
+        <th>finished</th>
+      </tr>
+      <tr>
+        <td>{% for task in tasksP %}
+
+            <div class="pending">
+                  <h2><a href="{% url 'tasks:detail' slug=task.slug%}">{{task.title}}</a> </h2>
+                <p>resume:{{task.preview}}</p>
+                <p>status: pending</p>
+            </div>
+          -------------
+          {% endfor %}</td>
+
+          <td>{% for task in tasksO %}
+
+                <div class="ongoing">
+                    <h2><a href="{% url 'tasks:detail' slug=task.slug%}">{{task.title}}</a> </h2>
+                    <p>resume:{{task.preview}}</p>
+                    <p>status:ongoing</p>
+                </div>
+            ------------
+            {% endfor %}</td>
+            <td>{% for task in tasksF %}
+
+                  <div class="finished">
+                        <h2><a href="{% url 'tasks:detail' slug=task.slug%}">{{task.title}}</a> </h2>
+                        <p>resume:{{task.preview}}</p>
+                      <p>status:finished</p>
+                  </div>
+            ------------
+              {% endfor %}</td>
+      </tr>
+    </table>
+    <form class="newTask" action="{%url 'tasks:create'%}" method="post">
+          {% csrf_token %}
+        <button type="submit" name="logout">new Task</button>
+    </form>
+{%endblock%}

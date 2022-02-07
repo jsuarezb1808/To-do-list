@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block content%}
+  <p>log in</p>
+  <form class="userForm" action="{%url 'users:login' %}" method="post">
+<!-- token to allow transfer of data, located on the settings file of the project-->
+    {{form}}
+
+    {%if request.GET.next%}
+      <input type="hidden" name="next" value="{{request.GET.next}}">
+    {%endif%}
+    {%csrf_token%}
+    <input type="submit" value="login">
+  </form>
+{%endblock%}
