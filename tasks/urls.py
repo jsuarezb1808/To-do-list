@@ -9,8 +9,8 @@ urlpatterns=[
     path('',views.showtasks,name='home'),
     path('new/',views.newtask,name='create'),
     re_path('(?P<slug>[\w-]+)/$',views.taskDetail,name='detail'),
-    re_path('^(?P<slug>[\w-]+)/(?P<slug>[\w-]+)/$',views.taskUpdate,name='update'),
-    #r indicates a regular expresion
+    re_path('update/(?P<slug>[\w-]+)/$',views.taskUpdate,name='update'),
+
     #^ indicates that cannot exist something before the url
     #$ cannot exist something after the indicated url
     #(?P<[NAME]>) the name of what we are getting from the template and sending to the view

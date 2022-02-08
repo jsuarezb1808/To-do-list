@@ -44,13 +44,17 @@ def showtasks(request):
 
 
 def taskUpdate(request,slug):
+
     Task=task.objects.get(slug=slug)
     if Task.status=='1':
-        task.objects.get(slug=slug).update(status='2')
+        Task.status='2'
+        Task.save()
     elif Task.status=='2':
-        task.objects.get(slug=slug).update(status='3')
+        Task.status='3'
+        Task.save()
     else:
-        task.objects.get(slug=slug).delete()
+        Task.delete()
+
     return redirect('tasks:home')
 
 def taskDetail(request,slug):
